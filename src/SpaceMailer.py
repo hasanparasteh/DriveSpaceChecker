@@ -2,17 +2,18 @@ import smtplib
 import sys
 
 import psutil
-from win10toast import ToastNotifier
+# from win10toast import ToastNotifier
 
 
 class DriveSpaceChecker:
     def __init__(self):
-        self.toaster = ToastNotifier()
-
+        #self.toaster = ToastNotifier()
+        pass
+    
     def low_space(self, amount):
         for drive in self.get_all_drives_letter():
             if psutil.disk_usage(drive).free <= amount:
-                self.toaster.show_toast(f"Drive {drive} is running low on space!")
+                #self.toaster.show_toast(f"Drive {drive} is running low on space!")
                 return False
         return True
 
