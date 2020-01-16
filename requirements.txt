@@ -1,2 +1,7 @@
+setuptools
+pywin32
+
 psutil
 win10toast
+
+pyinstaller
