@@ -11,3 +11,11 @@ source env/bin/activate
 pip install -r requirements.txt
 python SpaceMailer.py <example@gmail.com> <password>
 ```
+
+### ENV
+
+You have to create a `.env` file on root directory and pass the email list you want to alert email sent to!
+
+```txt
+EMAILS=['hasanparasteh@gmail.com']
+```
