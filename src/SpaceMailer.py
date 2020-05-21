@@ -1,19 +1,24 @@
+import os
 import smtplib
 import sys
 
 import psutil
+from dotenv import find_dotenv, load_dotenv
 # from win10toast import ToastNotifier
 
 
+# Loads .env file from root directory
+load_dotenv(find_dotenv())
+
 class DriveSpaceChecker:
     def __init__(self):
-        #self.toaster = ToastNotifier()
+        # self.toaster = ToastNotifier()
         pass
-    
+
     def low_space(self, amount):
         for drive in self.get_all_drives_letter():
             if psutil.disk_usage(drive).free <= amount:
-                #self.toaster.show_toast(f"Drive {drive} is running low on space!")
+                # self.toaster.show_toast(f"Drive {drive} is running low on space!")
                 return False
         return True
 
@@ -32,11 +37,10 @@ class SendMail:
         self.drive = DriveSpaceChecker()
 
         self.subject = "Critical Error: Server Space Is Running Out!"
-        self.message = "We don't have any time please check \'Seal Gostar Salaran\' server for space issue.\n We are " \
-                       "having some " \
+        self.message = "We don't have any time please check server for space issue.\n We are having some " \
                        "problem with saving data! "
 
-        self.list = ['mehdialfa2012@gmail.com', 'hasanparasteh@gmail.com', 'parasteh@hotmail.com']
+        self.list = os.getenv('EMAILS')
 
         self.server = smtplib.SMTP('smtp.gmail.com', 587)
         self.server.ehlo()
@@ -58,6 +62,7 @@ class SendMail:
             self.server.sendmail(self.email, item, mail_content)
 
     def drive_space_checker(self):
+        # Set amount manually as what you want here
         if not self.drive.low_space(15000000000):
             self.email_sender()
             print("Email sent!")

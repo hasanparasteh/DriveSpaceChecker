@@ -1,5 +1,6 @@
-.vscode
-env
+.vscode/
 
-dist
-build
+.env
+env/
+dist/
+build/
