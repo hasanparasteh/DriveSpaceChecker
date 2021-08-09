@@ -7,6 +7,6 @@ pycodestyle==2.6.0
 PyInstaller==3.6
 pypiwin32==223
 python-dotenv==0.13.0
-pywin32==227
+pywin32==301
 pywin32-ctypes==0.2.0
 win10toast==0.9
